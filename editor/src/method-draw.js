@@ -2312,7 +2312,7 @@ var SOTP = 0;
                 let updateLatexPreview = function() {
                     let tex = window.Tool.RecognitionTool.getTex();
                     parent.window.svg_source = btoa(unescape(encodeURIComponent($('#svgcontent').find('.active-layer').html())));
-                    parent.window.previewEditor.setValue(tex);
+                    console.log(tex);
                 }
 
                 // latex preview live reloading watcher
@@ -2324,7 +2324,7 @@ var SOTP = 0;
 
                         let previewObserver = new MutationObserver(previewCb);
                         if (previewTargetNode) {
-                            previewObserver.observe(previewTargetNode, previewConfig);                
+                            previewObserver.observe(previewTargetNode, previewConfig);
                         }
                     }
                 }
@@ -2333,7 +2333,7 @@ var SOTP = 0;
                 var clickConvert = function() {
                     var getBST = window.Tool.RecognitionTool.parse;
                     if (toolButtonClick('#tool_convert')) {
-                        updateLatexPreview();   
+                        updateLatexPreview();
                     }
                 };
 
