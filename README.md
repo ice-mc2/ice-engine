@@ -1,21 +1,11 @@
-# MC^2=E
+# ICE Engine
 
-![Travis Build Status](https://travis-ci.com/bestlkh/ice-MC2.svg?token=wxassxLjuZDp7LSybmeD&branch=master)
-
-A collaborative math equation editing software.
+Math editor for ICE project. This repository contains the barebones to get ICE editor up and running. The editor exposes useful APIs for you to obtain data and interact with it programmatically.
 
 ## How to Run
 
-### Docker
+To run the project, use the following command
 
-Pull the latest docker image from `050125095678.dkr.ecr.us-west-2.amazonaws.com/ice-mc2:latest`.
-
-This is a private ECS repository, you have to have access to AWS to use it.
-
-Start the image by running `docker run -p <port>:8080 -d ice-mc2`.
-
-### Node.js
-
-You must have Node.js and MongoDB installed.
-
-Run `npm install && node deployment.js && node app.js`.
+```
+$ npm start
+```
