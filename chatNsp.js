@@ -1,8 +1,6 @@
 // class for the creation/management of a dynamic namespace in socket io
 // the default chatnsp will replace existing code in the main app.js
 // lecturensp will be used for creating classrooms
-var constants = require("./AdminView/constants");
-var MongoClient = require('mongodb').MongoClient;
 var moment = require("moment");
 var Message = require("./message");
 const uuidv4 = require('uuid/v4');
@@ -73,11 +71,8 @@ function LectureNsp(name, owner, io) {
 }
 
 LectureNsp.prototype.connectToDb = function (callback) {
-    MongoClient.connect(constants.dbUrl, function (err, db) {
-        this.db = db;
-
-        callback();
-    }.bind(this));
+    console.log("NO MOGNODB");
+    callback();
 };
 
 LectureNsp.prototype.sendMessage = function (roomName, message, callback) {

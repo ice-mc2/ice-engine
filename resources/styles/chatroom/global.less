@@ -1,0 +1,260 @@
+/** chatroom/chat.less
+ * Global stylesheet, anything that cannot be categorised will be moved here.
+ */
+
+@import "variables";
+
+html {
+  width: 100%;
+  height: 100%;
+}
+body {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+
+// Remove margin and padding for every element
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#app-container {
+  width: 100%;
+  height: 100%;
+}
+
+#editor-frame {
+  width: 100%;
+  height: ~"calc(100vh - 30vh)"; // subtract mathjax preview
+  min-height: ~"calc(100vh - 300px)"
+}
+
+#math-editor {
+  height: 100vh;
+  position: relative;
+  background-color: @primary-color;
+  width:70%;
+  float: left;
+  &.shown {
+    width:100%;
+    opacity: 1;
+    pointer-events: all;
+    transition: opacity ease 0.5s;
+  }
+  #editor-resize-cover {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.2);
+    z-index: 99;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity ease 0.5s;
+    &.shown {
+      opacity: 1;
+      pointer-events: all;
+      transition: opacity ease 0.5s;
+    }
+    img {
+      max-width: 200px;
+      width: 80%;
+      margin-top: 20vh;
+    }
+    text-align: center;
+  }
+}
+
+#chatframe {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  &.shown {
+    width:0%;
+    opacity: 1;
+    pointer-events: all;
+    transition: opacity ease 0.5s;
+  }
+}
+
+#chatframe>.row {
+  margin: 0;
+}
+
+#chatframe>.row>.col-sm-12 {
+  padding: 0;
+}
+
+input {
+  margin: 10px auto;
+}
+
+.card {
+  background-color: #fff;
+  box-shadow:0 1px 3px rgba(0,0,0,.1);
+  transition: all 0.3s ease-in;
+}
+
+.arrow-left {
+  position: absolute;
+  top: 50%;
+  left: 68%;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(0,0,0,0.25);
+  opacity:0.5;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 0px;
+  &:hover {
+    opacity: 1;
+  }
+  &.shown {
+    z-index: 99;
+    left: 95%;
+    transition: left ease 0.5s;
+  }
+}
+
+.arrow-left:before {
+	position: absolute;
+	content: "";
+	width: 10px;
+	height: 2px;
+	left: 5px;
+	top: 6px;
+	background: #fff;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+	-webkit-transition: 0.2s;
+	transition: 0.2s;
+}
+
+.arrow-left:after {
+position: absolute;
+	content: "";
+	width: 10px;
+	height: 2px;
+	right: 5px;
+	top: 12px;
+	background: #fff;
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	-webkit-transition: 0.2s;
+	transition: 0.2s;
+}
+
+.arrow-left.arrow-right:before {
+  position: absolute;
+	content: "";
+	width: 10px;
+	height: 2px;
+	left: 5px;
+	top: 6px;
+  background: #fff;
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	-webkit-transition: 0.2s;
+	transition: 0.2s;
+}
+
+.arrow-left.arrow-right:after {
+	position: absolute;
+	content: "";
+	width: 10px;
+	height: 2px;
+	right: 5px;
+	top: 12px;
+	background: #fff;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+	-webkit-transition: 0.2s;
+	transition: 0.2s;
+}
+
+// Vertical resize bar for chat window
+#dragbar{
+  background-color:#2f2f2c;
+  height:100vh;
+  float: left;
+  width: 5px;
+  cursor: col-resize;
+  &.active {
+    display: none;
+  }
+}
+
+#ghostbar{
+  width:3px;
+  background-color: #00b0ff;
+  position:absolute;
+  cursor: col-resize;
+  z-index:999;
+  box-shadow: #00b0ff 0 0 5px;
+}
+
+.ajs-bottom {
+  margin-bottom: 70px;
+}
+
+.no-para-margin {
+  p {
+    margin: 0;
+  }
+}
+
+#less-warning {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999999;
+  background: rgba(255, 50, 50, 1);
+  color: white;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+#less-warning a {
+  color: white;
+  text-decoration: underline;
+}
+
+@media (max-width: 732px) {
+  #editor-frame {
+    height: 100vh;
+    width: 100%;
+  }
+
+  #math-editor {
+    z-index: 9999;
+    height: 100%;
+    box-shadow: rgba(0,0,0,0.3) 0 0 20px;
+    width: 100%;
+    position: fixed;
+    left: -110vw;
+    bottom: 0;
+    transition: left ease 0.5s;
+    &.shown {
+      left: 0vw;
+      transition: left ease 0.5s;
+    }
+  }
+
+  #chatframe {
+    width: 100%;
+    height: 100vh;
+    float: left;
+  }
+
+  #dragbar{
+    display: none;
+  }
+}
