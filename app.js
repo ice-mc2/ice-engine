@@ -8,31 +8,10 @@ var server = http.createServer(app);		// creating server
 var io = require('socket.io');				// using sockets
 var ios = io.listen(server);				// listening sockets
 var formidable = require('formidable');		// file upload module
-var util = require('util');
-const uuidv4 = require('uuid-v4');
 var moment = require("moment");
 var Message = require("./message");
 
-const AdminView = require("./AdminView");
 const ChatNsp = require("./chatNsp").ChatNsp;
-const constants = require("./AdminView/constants");
-
-var MongoClient = require('mongodb').MongoClient;
-
-function findOne(list, params) {
-    var result;
-    list.every(function (user) {
-        var accepted = Object.keys(params).every(function (item) {
-            return (user[item] === params[item])
-        });
-        if (accepted) {
-            result = (user);
-            return false;
-        }
-        return true;
-    });
-    return result;
-}
 
 var session = require('express-session')({
     secret: 'AdminView',
@@ -44,14 +23,12 @@ var session = require('express-session')({
         sameSite: false
     }
 });
+
 app.use(session);
 var sharedsession = require("express-socket.io-session");
 ios.use(sharedsession(session, {
     autoSave:true
 }));
-
-var AdminController =  new AdminView(ios, app, session);
-
 
 const Controllers = {
     SystemInfoController: require('./controllers/rest/SystemInfoController'),
@@ -125,7 +102,6 @@ function findRoom(roomId) {
 var chat = new ChatNsp("", ios);
 
 //sockets handling
-
 
 chat.on('connection', function(socket){
 
