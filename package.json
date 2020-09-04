@@ -53,7 +53,7 @@
     "jsdom": "^9.11.0",
     "jsdom-global": "^3.0.2",
     "moment": "^2.18.1",
-    "mongodb": "^2.2.31",
+    "mongodb": "^3.1.13",
     "multer": "^1.4.2",
     "node-outlook": "^1.1.6",
     "nodemailer": "^4.0.1",
